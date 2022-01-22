@@ -155,8 +155,8 @@ class IterativeOptimizer(Optimizer):
 
                 self.performance_history[round_ * features.shape[1] + iteration] = performance_tmp
 
-        # self.validation_performance = performance_tmp
-        print("Validation accuracy: " + str(performance_tmp))
+        self.validation_performance = performance_tmp
+        # print("Validation accuracy: " + str(performance_tmp))
         
         return lambdas
 
