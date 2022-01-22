@@ -487,10 +487,9 @@ class Study2D:
 
             fig, ax = plt.subplots()
             sns.heatmap(performances_percent[:, :, idx], annot=annotation,  fmt=".2f",
-                        annot_kws={"fontsize": 11, "fontweight": "roman", "fontfamily": "sans-serif",
-                                   "fontstyle": "italic"},
+                        annot_kws={"fontsize": 12, "fontweight": "roman", "fontfamily": "sans-serif",
+                                   "fontstyle": "italic", 'rotation': 22},
                         cbar=False, cmap='viridis')
-
             # We want to show all ticks...
             ax.set_xticks(np.arange(len(lambdas))+0.5)
             ax.set_yticks(np.arange(len(lambdas))+0.5)
