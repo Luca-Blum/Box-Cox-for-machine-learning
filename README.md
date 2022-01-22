@@ -8,36 +8,26 @@ This repository contains the code that was used for the paper
 To run the experiments first create a folder "logs" and then run:
     
     Sonar iterative:
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs/sonar_iter_4_rounds.txt; 
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 8 --shift 4 --shuffle 8 --finer 8 > logs/sonar_iter_8_rounds_4_shifts.txt
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 2 --finer 8 > logs/sonar_iter_8_rounds_2_shuffles.txt
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 8 --finer 4 > logs/sonar_iter_8_rounds_4_finer.txt
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 16 --shift 8 --shuffle 2 --finer 4 > logs/sonar_iter_16_rounds_8_shifts_2_shuffles_4_finer.txt
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 21 --epochs 16 --shift 8 --shuffle 4 --finer 4 > logs/sonar_iter_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt
+    python3 -m experiments.case_studies sonar 0 --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs/sonar_iter_4_rounds.txt; 
+    python3 -m experiments.case_studies sonar 0 --number_lambdas 11 --epochs 8 --shift 4 --shuffle 8 --finer 8 > logs/sonar_iter_8_rounds_4_shifts.txt
+    python3 -m experiments.case_studies sonar 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 2 --finer 8 > logs/sonar_iter_8_rounds_2_shuffles.txt
+    python3 -m experiments.case_studies sonar 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 8 --finer 4 > logs/sonar_iter_8_rounds_4_finer.txt
+    python3 -m experiments.case_studies sonar 0 --number_lambdas 11 --epochs 16 --shift 8 --shuffle 2 --finer 4 > logs/sonar_iter_16_rounds_8_shifts_2_shuffles_4_finer.txt
+    python3 -m experiments.case_studies sonar 0 --number_lambdas 21 --epochs 16 --shift 8 --shuffle 4 --finer 4 > logs/sonar_iter_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt
 
     Breast iterative
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs/breast_iter_4_rounds.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 8 --shift 4 --shuffle 8 --finer 8 > logs/breast_iter_8_rounds_4_shifts.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 2 --finer 8 > logs/breast_iter_8_rounds_2_shuffles.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 8 --finer 4 > logs/breast_iter_8_rounds_4_finer.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 16 --shift 8 --shuffle 2 --finer 4 > logs/breast_iter_16_rounds_8_shifts_2_shuffles_4_finer.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 21 --epochs 16 --shift 8 --shuffle 4 --finer 4 > logs/breast_iter_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt
+    python3 -m experiments.case_studies breast 0 --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs/breast_iter_4_rounds.txt
+    python3 -m experiments.case_studies breast 0 --number_lambdas 11 --epochs 8 --shift 4 --shuffle 8 --finer 8 > logs/breast_iter_8_rounds_4_shifts.txt
+    python3 -m experiments.case_studies breast 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 2 --finer 8 > logs/breast_iter_8_rounds_2_shuffles.txt
+    python3 -m experiments.case_studies breast 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 8 --finer 4 > logs/breast_iter_8_rounds_4_finer.txt
+    python3 -m experiments.case_studies breast 0 --number_lambdas 11 --epochs 16 --shift 8 --shuffle 2 --finer 4 > logs/breast_iter_16_rounds_8_shifts_2_shuffles_4_finer.txt
+    python3 -m experiments.case_studies breast 0 --number_lambdas 21 --epochs 16 --shift 8 --shuffle 4 --finer 4 > logs/breast_iter_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt
 
     Sonar gridsearch:
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_4_rounds.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_8_rounds_4_shifts.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_8_rounds_2_shuffles.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_8_rounds_4_finer.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_16_rounds_8_shifts_2_shuffles_4_finer.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 21 > logs/sonar_grid_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt
+    python3 -m experiments.case_studies sonar 1 --number_lambdas 11 > logs/sonar_grid.txt
 
     Breast gridsearch:
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_4_rounds.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_8_rounds_4_shifts.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_8_rounds_2_shuffles.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_8_rounds_4_finer.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_16_rounds_8_shifts_2_shuffles_4_finer.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 21 > logs/breast_grid_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt     
+    python3 -m experiments.case_studies breast 1 --number_lambdas 11 > logs/breast_grid.txt
 
 ## [impact_2D](boxcox/impact_2D)
 
