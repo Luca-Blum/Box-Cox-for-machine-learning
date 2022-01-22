@@ -500,8 +500,11 @@ if __name__ == '__main__':
     if args.finer is not None:
         finer = args.finer
 
+    print("scikit version:")
     print(sklearn.__version__)
+    print("numpy version:")
     print(np.__version__)
+    print("scipy version:")
     print(scipy.__version__)
 
     opt = None
