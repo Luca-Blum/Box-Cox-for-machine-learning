@@ -518,10 +518,10 @@ if __name__ == '__main__':
         print("finer = " + str(finer))
 
         opt = IterativeOptimizer(nr_lambdas=number_lambdas,
-                                  epochs=epochs,
-                                  perturbation=shift,
-                                  shuffle=shuffle,
-                                  finer=finer)
+                                 epochs=epochs,
+                                 shift_epoch=shift,
+                                 shuffle_epoch=shuffle,
+                                 finer_epoch=finer)
 
     elif args.optimizer == 1:
         print("Gridsearch")
