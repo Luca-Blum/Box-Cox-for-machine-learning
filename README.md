@@ -3,7 +3,7 @@
 This repository contains the code that was used for the paper 
 [Impact of Box Cox Transformation on Machine Learning Algorithms](Impact_of_Box_Cox_Transformation_on_Machine_Learning_Algorithms_iterative.pdf).
 
-## [Impact of Box-Cox transformation on 2D data](boxcox/impact_2D)
+## [Impact of Box-Cox Transformation on 2D Data](boxcox/impact_2D)
 
 Demonstrates the influence of the Box-Cox transformation for artificially generated 
 2D dataset. We demonstrated a consistent improvement of the accuracy. Further, we concluded that the accuracy of the classification is dependent on the 
