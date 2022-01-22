@@ -91,4 +91,3 @@ if __name__ == '__main__':
 
     performance, standard_deviations, performance_base, stds_base, lambdas, gauss, skew, gauss_base, skew_base, \
       pipelines, description = study_load.load_data(path_data)
-

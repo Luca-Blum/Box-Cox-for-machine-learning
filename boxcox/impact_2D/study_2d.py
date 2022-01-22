@@ -142,6 +142,8 @@ class Study2D:
         color = ['g' if label == 1 else 'y' for label in labels]
         # plot x,y data with c as the color vector, set the line width of the markers to 0
         plt.scatter(features[:, 0], features[:, 1], c=color, lw=0, marker=".")
+        plt.xticks(fontsize=14)
+        plt.yticks(fontsize=14)
 
         if store_path is not None:
             pathlib.Path(store_path).mkdir(parents=True, exist_ok=True)
