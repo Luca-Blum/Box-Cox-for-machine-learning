@@ -3,7 +3,7 @@
 This repository contains the code that was used for the paper 
 [Impact of Box Cox Transformation on Machine Learning Algorithms](Impact_of_Box_Cox_Transformation_on_Machine_Learning_Algorithms_iterative.pdf).
 
-## [Optimization](optimization)
+## [Optimization](boxcox/optimization)
 
 To run the experiments first create a folder "logs" and then run:
     
