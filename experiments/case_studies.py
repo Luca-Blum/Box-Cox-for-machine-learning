@@ -70,8 +70,8 @@ def evaluate_performance(features, labels, seed=42, optimizer=None):
         acc, std, acc_base, std_base = evaluate_classifier_performance(features, labels, classifier,
                                                                        optimizer=optimizer)
 
-        print('Test accuracy for ' + key + ':  %.3f (%.3f)' % (float(acc), float(std)))
-        print('Test accuracy for base ' + key + ':  %.3f (%.3f)' % (float(acc_base), float(std_base)))
+        print('Test accuracy for ' + key + ':  %.5f (%.5f)' % (float(acc), float(std)))
+        print('Test accuracy for base ' + key + ':  %.5f (%.5f)' % (float(acc_base), float(std_base)))
 
         performance_box_cox[idx] = acc
         standard_dev_box_cox[idx] = std
@@ -106,8 +106,6 @@ def evaluate_classifier_performance(features, labels, classifier, seed=42, outer
     acc = np.mean(n_scores)
     std = np.std(n_scores) / np.sqrt(len(n_scores))
 
-    print('Test accuracy for base:  %.5f (%.5f)' % (float(acc), float(std)))
-
     performance_base = acc
     std_base = std
 
@@ -124,7 +122,6 @@ def evaluate_classifier_performance(features, labels, classifier, seed=42, outer
     print(n_scores)
     acc = np.mean(n_scores)
     std = np.std(n_scores) / np.sqrt(len(n_scores))
-    print('Test accuracy:  %.5f (%.5f)' % (float(acc), float(std)))
 
     performance_box_cox = acc
     std_box_cox = std
