@@ -51,10 +51,6 @@ def evaluate(features, labels, name):
 
 if __name__ == '__main__':
 
-    """
-    python3 -m experiments.2d  > logs/2D.txt
-    """
-
     print("python version:")
     print(sys.version)
     print("scikit version:")

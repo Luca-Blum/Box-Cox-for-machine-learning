@@ -428,39 +428,6 @@ def run_breast(optimizer, grid):
 
 if __name__ == '__main__':
 
-    """
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs/sonar_iter_4_rounds.txt; 
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 8 --shift 4 --shuffle 8 --finer 8 > logs/sonar_iter_8_rounds_4_shifts.txt
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 2 --finer 8 > logs/sonar_iter_8_rounds_2_shuffles.txt
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 8 --finer 4 > logs/sonar_iter_8_rounds_4_finer.txt
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 16 --shift 8 --shuffle 2 --finer 4 > logs/sonar_iter_16_rounds_8_shifts_2_shuffles_4_finer.txt
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 21 --epochs 16 --shift 8 --shuffle 4 --finer 4 > logs/sonar_iter_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt
-
-
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs/breast_iter_4_rounds.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 8 --shift 4 --shuffle 8 --finer 8 > logs/breast_iter_8_rounds_4_shifts.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 2 --finer 8 > logs/breast_iter_8_rounds_2_shuffles.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 8 --finer 4 > logs/breast_iter_8_rounds_4_finer.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 16 --shift 8 --shuffle 2 --finer 4 > logs/breast_iter_16_rounds_8_shifts_2_shuffles_4_finer.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 21 --epochs 16 --shift 8 --shuffle 4 --finer 4 > logs/breast_iter_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt
-
-
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_4_rounds.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_8_rounds_4_shifts.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_8_rounds_2_shuffles.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_8_rounds_4_finer.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_16_rounds_8_shifts_2_shuffles_4_finer.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 21 > logs/sonar_grid_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt
-
-
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_4_rounds.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_8_rounds_4_shifts.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_8_rounds_2_shuffles.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_8_rounds_4_finer.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_16_rounds_8_shifts_2_shuffles_4_finer.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 21 > logs/breast_grid_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt        
-    """
-
     # Instantiate the parser
     parser = argparse.ArgumentParser(description='Optional app description')
 

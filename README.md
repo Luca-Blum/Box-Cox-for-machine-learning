@@ -5,7 +5,7 @@ This repository contains the code that was used for the paper
 
 ## [Optimization](optimization)
 
-To run the experiments use:
+To run the experiments first create a folder "logs" and then run:
     
     Sonar iterative:
     python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs/sonar_iter_4_rounds.txt; 
@@ -47,6 +47,6 @@ dataset and the classifier itself. Next, it is beneficial to use *full* optimiza
 which means that the optimization of the p-dimensional parameter vector for the Box-Cox transformation 
 needs to be optimized depend on the full dataset. Hence, one can not optimize each column independenlty.
 
-To run the experiments use:
+To run the experiments first create a folder "logs" and then use:
 
     python3 -m experiments.2d  > logs/2D.txt
