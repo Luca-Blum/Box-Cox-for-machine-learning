@@ -486,7 +486,9 @@ class Study2D:
             plt.figure(figsize=(15, 9), dpi=120)
 
             fig, ax = plt.subplots()
-            sns.heatmap(performances_percent[:, :, idx], annot=annotation,  fmt=".2f", annot_kws={"fontsize": 10},
+            sns.heatmap(performances_percent[:, :, idx], annot=annotation,  fmt=".2f",
+                        annot_kws={"fontsize": 11, "fontweight": "roman", "fontfamily": "sans-serif",
+                                   "fontstyle": "italic"},
                         cbar=False, cmap='viridis')
 
             # We want to show all ticks...
