@@ -38,7 +38,7 @@ class IterativeOptimizer(Optimizer):
         self.finer = finer
         self.seed = seed
 
-    def run(self, features, labels, classifier):
+     def run(self, features, labels, classifier):
         """
         First it transforms the features according to the given method. Afterwards it optimizes one column after another
         while holding the other features constant. The number of rounds specifies how many times this optimization
@@ -84,26 +84,30 @@ class IterativeOptimizer(Optimizer):
 
         finer_counter = 0
         start_round = 1
+        
+        initial_point = np.copy(lambdas)
+        shift = False
 
         for round_ in range(self.epochs):
             if round_ != 0:
                 finer_counter += 1
                 if round_ % self.perturbation == 0:
                     finer_counter = 0
-                    lambdas_tmp = np.random.random(features_transformed.shape[1])
+                    initial_point = np.random.random(features_transformed.shape[1])
                     for idx, column in enumerate(features_transformed.T):
                         if self.method == 'box_cox':
                             features_transformed[:, idx] = scipy.stats.boxcox(features_original[:, idx],
-                                                                              lambdas_tmp[idx])
+                                                                              initial_point[idx])
                         elif self.method == 'yeo_johnson':
                             features_transformed[:, idx] = scipy.stats.yeojohnson(features_original[:, idx],
-                                                                                  lambdas_tmp[idx])
+                                                                                  initial_point[idx])
                         else:
                             features_transformed[:, idx] = scipy.stats.boxcox(features_original[:, idx],
-                                                                              lambdas_tmp[idx])
+                                                                              initial_point[idx])
 
                     lambda_list = np.linspace(start=-5, stop=5, num=self.nr_lambdas)
                     start_round = 1
+                    shift = True
 
                 elif finer_counter % self.finer == 0:
                     start_round = 0
@@ -114,7 +118,6 @@ class IterativeOptimizer(Optimizer):
 
             for iteration in range(features_transformed.shape[1]):
 
-                lambdas_tmp = np.copy(lambdas)
                 features_tmp = np.copy(features_transformed)
 
                 idx = indices[iteration]
@@ -122,7 +125,6 @@ class IterativeOptimizer(Optimizer):
                 lambda_finer = lambda_list + (1 - start_round) * lambdas[idx]
 
                 for lambda_ in lambda_finer:
-                    lambdas_tmp[idx] = lambda_
                     if self.method == 'box_cox':
                         features_tmp[:, idx] = scipy.stats.boxcox(features_original[:, idx], lmbda=lambda_)
                     elif self.method == 'yeo_johnson':
@@ -138,6 +140,9 @@ class IterativeOptimizer(Optimizer):
                     acc = accuracy_score(prediction, labels)
 
                     if acc > performance_tmp:
+                        if shift:
+                            lambdas = np.copy(initial_point)
+                            shift = False
                         lambdas[idx] = lambda_
                         performance_tmp = acc
 
@@ -150,9 +155,9 @@ class IterativeOptimizer(Optimizer):
 
                 self.performance_history[round_ * features.shape[1] + iteration] = performance_tmp
 
-        self.validation_performance = performance_tmp
-        # print("Validation accuracy: " + str(performance_tmp))
-
+        # self.validation_performance = performance_tmp
+        print("Validation accuracy: " + str(performance_tmp))
+        
         return lambdas
 
     def get_validation_performance(self):
