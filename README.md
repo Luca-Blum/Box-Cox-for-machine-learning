@@ -3,6 +3,26 @@
 This repository contains the code that was used for the paper 
 [Impact of Box Cox Transformation on Machine Learning Algorithms](Impact_of_Box_Cox_Transformation_on_Machine_Learning_Algorithms_iterative.pdf).
 
+## [impact_2D](boxcox/impact_2D)
+
+Demonstrates the influence of the Box-Cox transformation for artificially generated 
+2D dataset. We demonstrated a consistent improvement of the accuracy. Further, we concluded that the accuracy of the classification is dependent on the 
+dataset and the classifier itself. Next, it is beneficial to use *full* optimization,
+which means that the optimization of the p-dimensional parameter vector for the Box-Cox transformation 
+needs to be optimized depend on the full dataset. Hence, one can not optimize each column independenlty.
+
+To run the experiments first create a folder "logs" and then use:
+
+    python3 -m experiments.2d  > logs/2D.txt
+
+This will create for every dataset a folder. Each folder has a data subfolder that stores different measurements from 
+the stratified 10-fold crossvalidation with 5 repetitions. Additionally, a scatter plot of the data is included. Next a 
+folder for the heatmaps is created. They were essential to demonstrate the above mentioned conclusion. Further a folder 
+with the influence of the Box-Cox transformation on the data is created. One can see that the transformation skews the 
+data in the direction of varying lambda 2. Finally, a performance folder is contained that shows the performance
+of all classifiers for varying lambda 2. 
+
+
 ## [Optimization](boxcox/optimization)
 This experiment was used to test the iterative optimization for two real world datasets. Additionally, 2-dimensional
 subsets were created to compare the method against a gridserch. The scripts needs as input the dataset (sonar/breast) and 
@@ -39,22 +59,3 @@ To run the experiment first create a folder "logs" and then run:
 
     Breast gridsearch:
     python3 -m experiments.case_studies breast 1 --number_lambdas 11 > logs/breast_grid.txt
-
-## [impact_2D](boxcox/impact_2D)
-
-Demonstrates the influence of the Box-Cox transformation for artificially generated 
-2D dataset. We demonstrated a consistent improvement of the accuracy. Further, we concluded that the accuracy of the classification is dependent on the 
-dataset and the classifier itself. Next, it is beneficial to use *full* optimization,
-which means that the optimization of the p-dimensional parameter vector for the Box-Cox transformation 
-needs to be optimized depend on the full dataset. Hence, one can not optimize each column independenlty.
-
-To run the experiments first create a folder "logs" and then use:
-
-    python3 -m experiments.2d  > logs/2D.txt
-
-This will create for every dataset a folder. Each folder has a data subfolder that stores different measurements from 
-the stratified 10-fold crossvalidation with 5 repetitions. Additionally, a scatter plot of the data is included. Next a 
-folder for the heatmaps is created. They were essential to demonstrate the above mentioned conclusion. Further a folder 
-with the influence of the Box-Cox transformation on the data is created. One can see that the transformation skews the 
-data in the direction of varying lambda 2. Finally, a performance folder is contained that shows the performance
-of all classifiers for varying lambda 2. 
