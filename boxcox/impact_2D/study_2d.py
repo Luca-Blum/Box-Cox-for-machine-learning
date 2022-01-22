@@ -485,22 +485,18 @@ class Study2D:
             plt.figure(figsize=(15, 9), dpi=120)
 
             fig, ax = plt.subplots()
-            sns.heatmap(performances_percent[:, :, idx], annot=annotation,  fmt=".2f", annot_kws={"fontsize": 8},
+            sns.heatmap(performances_percent[:, :, idx], annot=annotation,  fmt=".2f", annot_kws={"fontsize": 10},
                         cbar=False, cmap='viridis')
-
-            """
-            ax.imshow(performances_percent[:, :, idx], cmap='viridis')
-            """
 
             # We want to show all ticks...
             ax.set_xticks(np.arange(len(lambdas))+0.5)
             ax.set_yticks(np.arange(len(lambdas))+0.5)
             # ... and label them with the respective list entries
-            ax.set_xticklabels([int(lmb) for lmb in lambdas])
-            ax.set_yticklabels([int(lmb) for lmb in lambdas])
+            ax.set_xticklabels([int(lmb) for lmb in lambdas], fontsize=14)
+            ax.set_yticklabels([int(lmb) for lmb in lambdas], fontsize=14)
 
-            ax.set_xlabel('Lambda 2')
-            ax.set_ylabel('Lambda 1')
+            ax.set_xlabel('Lambda 2', fontsize=14)
+            ax.set_ylabel('Lambda 1', fontsize=14)
 
             # Rotate the tick labels and set their alignment.
             plt.setp(ax.get_yticklabels(), rotation=0, ha="right",

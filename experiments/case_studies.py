@@ -2,6 +2,7 @@ import pathlib
 import argparse
 import random
 import re
+import sys
 import numpy as np
 import scipy
 from matplotlib import pyplot as plt
@@ -500,6 +501,8 @@ if __name__ == '__main__':
     if args.finer is not None:
         finer = args.finer
 
+    print("python version:")
+    print(sys.version)
     print("scikit version:")
     print(sklearn.__version__)
     print("numpy version:")
