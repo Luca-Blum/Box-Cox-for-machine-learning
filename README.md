@@ -3,7 +3,14 @@
 This repository contains the code that was used for the paper 
 [Impact of Box Cox Transformation on Machine Learning Algorithms](Impact_of_Box_Cox_Transformation_on_Machine_Learning_Algorithms_iterative.pdf).
 
-## [Impact of Box-Cox Transformation on 2D Data](boxcox/impact_2D)
+## [Box-Cox](boxcox)
+This folder contains the code to study the impact of the Box-Cox transformation for 2D data and the iterative optimization.
+
+## [Experiments](experiments)
+
+This folder contains the scripts for the experiments.
+
+### [Impact of Box-Cox Transformation on 2D Data](boxcox/impact_2D)
 
 Demonstrates the influence of the Box-Cox transformation for artificially generated 
 2D dataset. We demonstrated a consistent improvement of the accuracy. Further, we concluded that the accuracy of the classification is dependent on the 
@@ -23,7 +30,7 @@ data in the direction of varying lambda 2. Finally, a performance folder is cont
 of all classifiers for varying lambda 2. 
 
 
-## [Optimization](boxcox/optimization)
+### [Optimization](boxcox/optimization)
 This experiment was used to test the iterative optimization for two real world datasets. Additionally, 2-dimensional
 subsets were created to compare the method against a gridserch. The scripts need as input the dataset (sonar/breast) and 
 the optimization procedure (0=iterative, 1=gridsearch). Additionally, hyperparameters can be added. 
