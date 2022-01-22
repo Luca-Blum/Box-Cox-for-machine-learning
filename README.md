@@ -20,7 +20,7 @@ needs to be optimized depend on the full dataset. Hence, one can not optimize ea
 
 To run the experiments first create a folder "logs" and then use:
 
-    python3 -m experiments.2d  > logs/2D.txt
+    python3 -m experiments.2d_study  > logs/2D.txt
 
 This will create for every dataset a folder. Each folder has a data subfolder that stores different measurements from 
 the stratified 10-fold crossvalidation with 5 repetitions. Additionally, a scatter plot of the data is included. Next a 
