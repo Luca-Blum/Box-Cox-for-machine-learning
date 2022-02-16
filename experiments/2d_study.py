@@ -1,5 +1,8 @@
 import pathlib
+import sys
 import numpy as np
+import scipy
+import sklearn
 from sklearn.datasets import make_gaussian_quantiles, make_moons, make_blobs, make_classification
 from sklearn.preprocessing import MinMaxScaler
 from boxcox.impact_2D import Study2D
@@ -26,7 +29,7 @@ def evaluate(features, labels, name):
     data_plot_path = pathlib.Path.joinpath(folder_path, 'influence_boxcox_data_plots')
     pathlib.Path(data_plot_path).mkdir(parents=True, exist_ok=True)
 
-    heatmap_path = pathlib.Path.joinpath(folder_path, 'heat_maps')
+    heatmap_path = pathlib.Path.joinpath(folder_path, 'heatmaps')
     pathlib.Path(heatmap_path).mkdir(parents=True, exist_ok=True)
 
     histogram_path = pathlib.Path.joinpath(folder_path, 'histograms')
@@ -48,9 +51,14 @@ def evaluate(features, labels, name):
 
 if __name__ == '__main__':
 
-    """
-    python3 -m experiments.2d  > logs/2D.txt
-    """
+    print("python version:")
+    print(sys.version)
+    print("scikit version:")
+    print(sklearn.__version__)
+    print("numpy version:")
+    print(np.__version__)
+    print("scipy version:")
+    print(scipy.__version__)
 
     X1, y1 = make_classification(n_samples=1000, n_features=2, n_informative=2, n_redundant=0, n_repeated=0,
                                  n_classes=2, random_state=1)

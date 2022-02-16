@@ -1,9 +1,9 @@
 # Experiments
 
-#  [2D Study](2d.py)
+#  [2D Study](2d_study.py)
 
 Experiments to study the behavior of the Box-Cox transformation on artificially generated 2D datasets. 
-The plotting functionality might be unusable for bigger gridsearch. 
+The plotting functionality might be unusable for a bigger gridsearch. 
 
 # [Case Studies](case_studies.py)
 

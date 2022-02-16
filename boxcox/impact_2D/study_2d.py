@@ -1,6 +1,5 @@
 import pathlib
 import pickle
-
 import numpy as np
 import pandas as pd
 import scipy.stats
@@ -142,6 +141,8 @@ class Study2D:
         color = ['g' if label == 1 else 'y' for label in labels]
         # plot x,y data with c as the color vector, set the line width of the markers to 0
         plt.scatter(features[:, 0], features[:, 1], c=color, lw=0, marker=".")
+        plt.xticks(fontsize=14)
+        plt.yticks(fontsize=14)
 
         if store_path is not None:
             pathlib.Path(store_path).mkdir(parents=True, exist_ok=True)
@@ -485,22 +486,19 @@ class Study2D:
             plt.figure(figsize=(15, 9), dpi=120)
 
             fig, ax = plt.subplots()
-            sns.heatmap(performances_percent[:, :, idx], annot=annotation,  fmt=".2f", annot_kws={"fontsize": 8},
+            sns.heatmap(performances_percent[:, :, idx], annot=annotation,  fmt=".2f",
+                        annot_kws={"fontsize": 12, "fontweight": "roman", "fontfamily": "sans-serif",
+                                   "fontstyle": "italic", 'rotation': 22},
                         cbar=False, cmap='viridis')
-
-            """
-            ax.imshow(performances_percent[:, :, idx], cmap='viridis')
-            """
-
             # We want to show all ticks...
             ax.set_xticks(np.arange(len(lambdas))+0.5)
             ax.set_yticks(np.arange(len(lambdas))+0.5)
             # ... and label them with the respective list entries
-            ax.set_xticklabels([int(lmb) for lmb in lambdas])
-            ax.set_yticklabels([int(lmb) for lmb in lambdas])
+            ax.set_xticklabels([int(lmb) for lmb in lambdas], fontsize=14)
+            ax.set_yticklabels([int(lmb) for lmb in lambdas], fontsize=14)
 
-            ax.set_xlabel('Lambda 2')
-            ax.set_ylabel('Lambda 1')
+            ax.set_xlabel('Lambda 2', fontsize=14)
+            ax.set_ylabel('Lambda 1', fontsize=14)
 
             # Rotate the tick labels and set their alignment.
             plt.setp(ax.get_yticklabels(), rotation=0, ha="right",

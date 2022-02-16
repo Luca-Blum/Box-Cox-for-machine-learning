@@ -2,6 +2,7 @@ import pathlib
 import argparse
 import random
 import re
+import sys
 import numpy as np
 import scipy
 from matplotlib import pyplot as plt
@@ -29,6 +30,8 @@ def show_data(features, labels, store_path=None):
     color = ['g' if label == 1 else 'y' for label in labels]
     # plot x,y data with c as the color vector, set the line width of the markers to 0
     plt.scatter(features[:, 0], features[:, 1], c=color, lw=0, marker=".")
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14)
 
     if store_path is not None:
         plt.savefig(store_path)
@@ -67,8 +70,8 @@ def evaluate_performance(features, labels, seed=42, optimizer=None):
         acc, std, acc_base, std_base = evaluate_classifier_performance(features, labels, classifier,
                                                                        optimizer=optimizer)
 
-        print('Test accuracy for ' + key + ':  %.3f (%.3f)' % (float(acc), float(std)))
-        print('Test accuracy for base ' + key + ':  %.3f (%.3f)' % (float(acc_base), float(std_base)))
+        print('Test accuracy for ' + key + ':  %.5f (%.5f)' % (float(acc), float(std)))
+        print('Test accuracy for base ' + key + ':  %.5f (%.5f)' % (float(acc_base), float(std_base)))
 
         performance_box_cox[idx] = acc
         standard_dev_box_cox[idx] = std
@@ -103,8 +106,6 @@ def evaluate_classifier_performance(features, labels, classifier, seed=42, outer
     acc = np.mean(n_scores)
     std = np.std(n_scores) / np.sqrt(len(n_scores))
 
-    print('Test accuracy for base:  %.5f (%.5f)' % (float(acc), float(std)))
-
     performance_base = acc
     std_base = std
 
@@ -121,7 +122,6 @@ def evaluate_classifier_performance(features, labels, classifier, seed=42, outer
     print(n_scores)
     acc = np.mean(n_scores)
     std = np.std(n_scores) / np.sqrt(len(n_scores))
-    print('Test accuracy:  %.5f (%.5f)' % (float(acc), float(std)))
 
     performance_box_cox = acc
     std_box_cox = std
@@ -425,39 +425,6 @@ def run_breast(optimizer, grid):
 
 if __name__ == '__main__':
 
-    """
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs/sonar_iter_4_rounds.txt; 
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 8 --shift 4 --shuffle 8 --finer 8 > logs/sonar_iter_8_rounds_4_shifts.txt
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 2 --finer 8 > logs/sonar_iter_8_rounds_2_shuffles.txt
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 8 --finer 4 > logs/sonar_iter_8_rounds_4_finer.txt
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 11 --epochs 16 --shift 8 --shuffle 2 --finer 4 > logs/sonar_iter_16_rounds_8_shifts_2_shuffles_4_finer.txt
-    python3 -m optimization.optimization.experiments sonar 0 --number_lambdas 21 --epochs 16 --shift 8 --shuffle 4 --finer 4 > logs/sonar_iter_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt
-
-
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs/breast_iter_4_rounds.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 8 --shift 4 --shuffle 8 --finer 8 > logs/breast_iter_8_rounds_4_shifts.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 2 --finer 8 > logs/breast_iter_8_rounds_2_shuffles.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 8 --finer 4 > logs/breast_iter_8_rounds_4_finer.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 11 --epochs 16 --shift 8 --shuffle 2 --finer 4 > logs/breast_iter_16_rounds_8_shifts_2_shuffles_4_finer.txt
-    python3 -m optimization.optimization.experiments breast 0 --number_lambdas 21 --epochs 16 --shift 8 --shuffle 4 --finer 4 > logs/breast_iter_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt
-
-
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_4_rounds.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_8_rounds_4_shifts.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_8_rounds_2_shuffles.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_8_rounds_4_finer.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 11 > logs/sonar_grid_16_rounds_8_shifts_2_shuffles_4_finer.txt
-    python3 -m optimization.optimization.experiments sonar 1 --number_lambdas 21 > logs/sonar_grid_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt
-
-
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_4_rounds.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_8_rounds_4_shifts.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_8_rounds_2_shuffles.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_8_rounds_4_finer.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 11 > logs/breast_grid_16_rounds_8_shifts_2_shuffles_4_finer.txt
-    python3 -m optimization.optimization.experiments breast 1 --number_lambdas 21 > logs/breast_grid_21_lambdas_16_rounds_8_shifts_2_shuffles_4_finer.txt        
-    """
-
     # Instantiate the parser
     parser = argparse.ArgumentParser(description='Optional app description')
 
@@ -500,6 +467,8 @@ if __name__ == '__main__':
     if args.finer is not None:
         finer = args.finer
 
+    print("python version:")
+    print(sys.version)
     print("scikit version:")
     print(sklearn.__version__)
     print("numpy version:")
@@ -518,10 +487,10 @@ if __name__ == '__main__':
         print("finer = " + str(finer))
 
         opt = IterativeOptimizer(nr_lambdas=number_lambdas,
-                                  epochs=epochs,
-                                  perturbation=shift,
-                                  shuffle=shuffle,
-                                  finer=finer)
+                                 epochs=epochs,
+                                 shift_epoch=shift,
+                                 shuffle_epoch=shuffle,
+                                 finer_epoch=finer)
 
     elif args.optimizer == 1:
         print("Gridsearch")

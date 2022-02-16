@@ -14,16 +14,16 @@ class IterativeOptimizer(Optimizer):
     This reduces the optimization complexity to n 1D optimizations problems instead of one global pD optimization
     problem where p is the number of features/columns.
     """
-    def __init__(self, nr_lambdas=21, init='box_cox', method='box_cox', epochs=16, shuffle=2, perturbation=8, finer=4,
-                 seed=42):
+    def __init__(self, nr_lambdas=21, init='box_cox', method='box_cox', epochs=16, shuffle_epoch=2, shift_epoch=8,
+                 finer_epoch=4, seed=42):
         """
         :param init: method for the initial transformation
         :param method: method for individual transformation. If 'random' then
         :param nr_lambdas:
         :param epochs: number of rounds used for optimizing the complete dataset
-        :param shuffle: number of rounds until the order of iterative optimization gets reshuffled
-        :param perturbation: number of rounds until lambda gets perturb to escape local minima
-        :param finer: number of round until the gridsearch gets finer
+        :param shuffle_epoch: number of rounds until the order of iterative optimization gets reshuffled
+        :param shift_epoch: number of rounds until lambda gets perturb to escape local minima
+        :param finer_epoch: number of round until the gridsearch gets finer
         :param seed: random seed
         """
         self.init_method = init
@@ -33,12 +33,12 @@ class IterativeOptimizer(Optimizer):
         self.init = init
         self.method = method
         self.epochs = epochs
-        self.shuffle = shuffle
-        self.perturbation = perturbation
-        self.finer = finer
+        self.shuffle_epoch = shuffle_epoch
+        self.shift_epoch = shift_epoch
+        self.finer_epoch = finer_epoch
         self.seed = seed
 
-     def run(self, features, labels, classifier):
+    def run(self, features, labels, classifier):
         """
         First it transforms the features according to the given method. Afterwards it optimizes one column after another
         while holding the other features constant. The number of rounds specifies how many times this optimization
@@ -50,8 +50,8 @@ class IterativeOptimizer(Optimizer):
         :return:
         """
 
-        if self.finer > self.perturbation:
-            self.finer = self.perturbation
+        if self.finer_epoch > self.shift_epoch:
+            self.finer_epoch = self.shift_epoch
 
         features_original = np.copy(features)
 
@@ -91,7 +91,7 @@ class IterativeOptimizer(Optimizer):
         for round_ in range(self.epochs):
             if round_ != 0:
                 finer_counter += 1
-                if round_ % self.perturbation == 0:
+                if round_ % self.shift_epoch == 0:
                     finer_counter = 0
                     initial_point = np.random.random(features_transformed.shape[1])
                     for idx, column in enumerate(features_transformed.T):
@@ -109,11 +109,11 @@ class IterativeOptimizer(Optimizer):
                     start_round = 1
                     shift = True
 
-                elif finer_counter % self.finer == 0:
+                elif finer_counter % self.finer_epoch == 0:
                     start_round = 0
                     lambda_list = 0.5 * lambda_list
 
-                if round_ % self.shuffle == 0:
+                if round_ % self.shuffle_epoch == 0:
                     rng.shuffle(indices)
 
             for iteration in range(features_transformed.shape[1]):
@@ -155,8 +155,8 @@ class IterativeOptimizer(Optimizer):
 
                 self.performance_history[round_ * features.shape[1] + iteration] = performance_tmp
 
-        # self.validation_performance = performance_tmp
-        print("Validation accuracy: " + str(performance_tmp))
+        self.validation_performance = performance_tmp
+        # print("Validation accuracy: " + str(performance_tmp))
         
         return lambdas
 
