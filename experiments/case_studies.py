@@ -139,18 +139,18 @@ def run_sonar(optimizer, grid):
     pathlib.Path(data_path).mkdir(parents=True, exist_ok=True)
 
     sonar_path = pathlib.Path.joinpath(current_path, 'sonar.csv')
-    dataset = read_csv(sonar_path, header=0)
-    data = dataset.values
-
-    # separate into input and output columns
-    X, y = data[:, :-1], data[:, -1]
-    # ensure inputs are floats and output is an integer label
-    X = X.astype('float32')
-    y = LabelEncoder().fit_transform(y.astype('str'))
-
-    y = 2 * y - 1
 
     if not grid:
+        dataset = read_csv(sonar_path, header=0)
+        data = dataset.values
+        # separate into input and output columns
+        X, y = data[:, :-1], data[:, -1]
+        # ensure inputs are floats and output is an integer label
+        X = X.astype('float32')
+        y = LabelEncoder().fit_transform(y.astype('str'))
+
+        y = 2 * y - 1
+
         print("Full \n")
         print(X)
 
@@ -163,13 +163,12 @@ def run_sonar(optimizer, grid):
         print(re.sub('[][]', '', np.array2string(perf_base * 100, precision=3, separator=' & ')))
         print("Improvement")
         print(re.sub('[][]', '', np.array2string((perf_box_cox - perf_base) * 100, precision=3, separator=' & ')))
+        print("\n\n\n\n")
 
     random.seed(42)
     np.random.seed(42)
 
     # Sonar data set
-    current_path = pathlib.Path(__file__).parent.resolve()
-    sonar_path = pathlib.Path.joinpath(current_path, 'sonar.csv')
     dataset = read_csv(sonar_path, header=0)
     data = dataset.values
     # separate into input and output columns
@@ -200,8 +199,6 @@ def run_sonar(optimizer, grid):
     np.random.seed(42)
 
     # Sonar data set
-    current_path = pathlib.Path(__file__).parent.resolve()
-    sonar_path = pathlib.Path.joinpath(current_path, 'sonar.csv')
     dataset = read_csv(sonar_path, header=0)
     data = dataset.values
     # separate into input and output columns
@@ -233,8 +230,6 @@ def run_sonar(optimizer, grid):
     np.random.seed(42)
 
     # Sonar data set
-    current_path = pathlib.Path(__file__).parent.resolve()
-    sonar_path = pathlib.Path.joinpath(current_path, 'sonar.csv')
     dataset = read_csv(sonar_path, header=0)
     data = dataset.values
     # separate into input and output columns
@@ -266,8 +261,6 @@ def run_sonar(optimizer, grid):
     np.random.seed(42)
 
     # Sonar data set
-    current_path = pathlib.Path(__file__).parent.resolve()
-    sonar_path = pathlib.Path.joinpath(current_path, 'sonar.csv')
     dataset = read_csv(sonar_path, header=0)
     data = dataset.values
     # separate into input and output columns
@@ -304,12 +297,12 @@ def run_breast(optimizer, grid):
     data_path = pathlib.Path.joinpath(current_path, 'data_breast')
     pathlib.Path(data_path).mkdir(parents=True, exist_ok=True)
 
-    X, y = load_breast_cancer(return_X_y=True)
-    X = X.astype('float32')
-
-    y = 2 * y - 1
-
     if not grid:
+        X, y = load_breast_cancer(return_X_y=True)
+        X = X.astype('float32')
+
+        y = 2 * y - 1
+
         print("Full \n")
         print(X)
 
@@ -322,6 +315,7 @@ def run_breast(optimizer, grid):
         print(re.sub('[][]', '', np.array2string(perf_base * 100, precision=3, separator=' & ')))
         print("Improvement")
         print(re.sub('[][]', '', np.array2string((perf_box_cox - perf_base) * 100, precision=3, separator=' & ')))
+        print("\n\n\n\n")
 
     random.seed(42)
     np.random.seed(42)

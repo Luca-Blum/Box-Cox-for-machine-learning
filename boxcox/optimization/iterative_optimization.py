@@ -36,7 +36,7 @@ class IterativeOptimizer(Optimizer):
         self.shuffle_epoch = shuffle_epoch
         self.shift_epoch = shift_epoch
         self.finer_epoch = finer_epoch
-        self.seed = seed
+        self.rng = np.random.default_rng(seed=seed)
 
     def run(self, features, labels, classifier):
         """
@@ -63,12 +63,11 @@ class IterativeOptimizer(Optimizer):
         self.performance_history = np.zeros(self.epochs * features.shape[1])
 
         indices = np.arange(features_original.shape[1])
-        rng = np.random.default_rng(seed=self.seed)
 
         if self.init in ['box_cox', 'yeo_johnson']:
             lambdas = np.zeros(features.shape[1])
         else:
-            lambdas = np.random.random(features.shape[1])
+            lambdas = self.rng.random(features.shape[1]) * 10.0 - 5.0
 
         features_transformed = np.copy(features)
 
@@ -93,7 +92,7 @@ class IterativeOptimizer(Optimizer):
                 finer_counter += 1
                 if round_ % self.shift_epoch == 0:
                     finer_counter = 0
-                    initial_point = np.random.random(features_transformed.shape[1])
+                    initial_point = self.rng.random(features_transformed.shape[1]) * 10.0 - 5.0
                     for idx, column in enumerate(features_transformed.T):
                         if self.method == 'box_cox':
                             features_transformed[:, idx] = scipy.stats.boxcox(features_original[:, idx],
@@ -114,7 +113,7 @@ class IterativeOptimizer(Optimizer):
                     lambda_list = 0.5 * lambda_list
 
                 if round_ % self.shuffle_epoch == 0:
-                    rng.shuffle(indices)
+                    self.rng.shuffle(indices)
 
             for iteration in range(features_transformed.shape[1]):
 
