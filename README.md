@@ -55,7 +55,7 @@ To run all experiments first create folders "logs_acc". "logs_f1" and "logs_matt
     EVALUATE ACCURACY
 
     Sonar iterative:
-    python3 -m experiments.case_studies sonar 0 --metric accuracy --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs_acc/sonar_iter_4_rounds.txt; 
+    python3 -m experiments.case_studies sonar 0 --metric accuracy --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs_acc/sonar_iter_4_rounds.txt
     python3 -m experiments.case_studies sonar 0 --metric accuracy --number_lambdas 11 --epochs 8 --shift 4 --shuffle 8 --finer 8 > logs_acc/sonar_iter_8_rounds_4_shifts.txt
     python3 -m experiments.case_studies sonar 0 --metric accuracy --number_lambdas 11 --epochs 8 --shift 8 --shuffle 2 --finer 8 > logs_acc/sonar_iter_8_rounds_2_shuffles.txt
     python3 -m experiments.case_studies sonar 0 --metric accuracy --number_lambdas 11 --epochs 8 --shift 8 --shuffle 8 --finer 4 > logs_acc/sonar_iter_8_rounds_4_finer.txt
@@ -86,7 +86,7 @@ To run all experiments first create folders "logs_acc". "logs_f1" and "logs_matt
     EVALUATE F1 SCORE
 
     Sonar iterative:
-    python3 -m experiments.case_studies sonar 0 --metric f1 --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs_f1/sonar_iter_4_rounds.txt; 
+    python3 -m experiments.case_studies sonar 0 --metric f1 --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs_f1/sonar_iter_4_rounds.txt
     python3 -m experiments.case_studies sonar 0 --metric f1 --number_lambdas 11 --epochs 8 --shift 4 --shuffle 8 --finer 8 > logs_f1/sonar_iter_8_rounds_4_shifts.txt
     python3 -m experiments.case_studies sonar 0 --metric f1 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 2 --finer 8 > logs_f1/sonar_iter_8_rounds_2_shuffles.txt
     python3 -m experiments.case_studies sonar 0 --metric f1 --number_lambdas 11 --epochs 8 --shift 8 --shuffle 8 --finer 4 > logs_f1/sonar_iter_8_rounds_4_finer.txt
@@ -117,7 +117,7 @@ To run all experiments first create folders "logs_acc". "logs_f1" and "logs_matt
     EVALUATE MATTHEWS CROSS CORRELATION
 
     Sonar iterative:
-    python3 -m experiments.case_studies sonar 0 --metric matthews --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs_matthews/sonar_iter_4_rounds.txt; 
+    python3 -m experiments.case_studies sonar 0 --metric matthews --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs_matthews/sonar_iter_4_rounds.txt
     python3 -m experiments.case_studies sonar 0 --metric matthews --number_lambdas 11 --epochs 8 --shift 4 --shuffle 8 --finer 8 > logs_matthews/sonar_iter_8_rounds_4_shifts.txt
     python3 -m experiments.case_studies sonar 0 --metric matthews --number_lambdas 11 --epochs 8 --shift 8 --shuffle 2 --finer 8 > logs_matthews/sonar_iter_8_rounds_2_shuffles.txt
     python3 -m experiments.case_studies sonar 0 --metric matthews --number_lambdas 11 --epochs 8 --shift 8 --shuffle 8 --finer 4 > logs_matthews/sonar_iter_8_rounds_4_finer.txt
