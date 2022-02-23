@@ -73,8 +73,8 @@ def evaluate_performance(features, labels, seed=42, optimizer=None, metric='accu
         acc, std, acc_base, std_base = evaluate_classifier_performance(features, labels, classifier,
                                                                        optimizer=optimizer, metric=metric)
 
-        print('Test accuracy for ' + key + ':  %.5f (%.5f)' % (float(acc), float(std)))
-        print('Test accuracy for base ' + key + ':  %.5f (%.5f)' % (float(acc_base), float(std_base)))
+        print('Performance for ' + key + ':  %.5f (%.5f)' % (float(acc), float(std)))
+        print('Performance for base ' + key + ':  %.5f (%.5f)' % (float(acc_base), float(std_base)))
 
         performance_box_cox[idx] = acc
         standard_dev_box_cox[idx] = std
@@ -210,7 +210,7 @@ def run_sonar(optimizer, grid, metric):
     print(X)
 
     perf_box_cox, standard_dev_box_cox, perf_base, standard_dev_base = evaluate_performance(X, y, optimizer=optimizer,
-                                                                                                metric=metric)
+                                                                                            metric=metric)
 
     print("Iterative")
     print(re.sub('[][]', '', np.array2string(perf_box_cox * 100, precision=3, separator=' & ')))
@@ -242,7 +242,7 @@ def run_sonar(optimizer, grid, metric):
     print(X)
 
     perf_box_cox, standard_dev_box_cox, perf_base, standard_dev_base = evaluate_performance(X, y, optimizer=optimizer,
-                                                                                                metric=metric)
+                                                                                            metric=metric)
 
     print("Iterative")
     print(re.sub('[][]', '', np.array2string(perf_box_cox * 100, precision=3, separator=' & ')))
@@ -274,7 +274,7 @@ def run_sonar(optimizer, grid, metric):
     print(X)
 
     perf_box_cox, standard_dev_box_cox, perf_base, standard_dev_base = evaluate_performance(X, y, optimizer=optimizer,
-                                                                                                metric=metric)
+                                                                                            metric=metric)
 
     print("Iterative")
     print(re.sub('[][]', '', np.array2string(perf_box_cox * 100, precision=3, separator=' & ')))
@@ -306,7 +306,7 @@ def run_sonar(optimizer, grid, metric):
     print(X)
 
     perf_box_cox, standard_dev_box_cox, perf_base, standard_dev_base = evaluate_performance(X, y, optimizer=optimizer,
-                                                                                                metric=metric)
+                                                                                            metric=metric)
 
     print("Iterative")
     print(re.sub('[][]', '', np.array2string(perf_box_cox * 100, precision=3, separator=' & ')))
@@ -361,7 +361,7 @@ def run_breast(optimizer, grid, metric):
     print(X)
 
     perf_box_cox, standard_dev_box_cox, perf_base, standard_dev_base = evaluate_performance(X, y, optimizer=optimizer,
-                                                                                                metric=metric)
+                                                                                            metric=metric)
 
     print("Iterative")
     print(re.sub('[][]', '', np.array2string(perf_box_cox * 100, precision=3, separator=' & ')))
@@ -387,7 +387,7 @@ def run_breast(optimizer, grid, metric):
     print(X)
 
     perf_box_cox, standard_dev_box_cox, perf_base, standard_dev_base = evaluate_performance(X, y, optimizer=optimizer,
-                                                                                                metric=metric)
+                                                                                            metric=metric)
 
     print("Iterative")
     print(re.sub('[][]', '', np.array2string(perf_box_cox * 100, precision=3, separator=' & ')))
@@ -413,7 +413,7 @@ def run_breast(optimizer, grid, metric):
     print(X)
 
     perf_box_cox, standard_dev_box_cox, perf_base, standard_dev_base = evaluate_performance(X, y, optimizer=optimizer,
-                                                                                                metric=metric)
+                                                                                            metric=metric)
 
     print("Iterative")
     print(re.sub('[][]', '', np.array2string(perf_box_cox * 100, precision=3, separator=' & ')))
@@ -439,7 +439,7 @@ def run_breast(optimizer, grid, metric):
     print(X)
 
     perf_box_cox, standard_dev_box_cox, perf_base, standard_dev_base = evaluate_performance(X, y, optimizer=optimizer,
-                                                                                                metric=metric)
+                                                                                            metric=metric)
 
     print("Iterative")
     print(re.sub('[][]', '', np.array2string(perf_box_cox * 100, precision=3, separator=' & ')))
@@ -476,9 +476,9 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    metric = ''
+    evaluation_metric = ''
     if args.metric in ['accuracy', 'f1', 'matthews']:
-        metric = args.metric
+        evaluation_metric = args.metric
     else:
         exit("Metric is not supported. Available metrics are [accuracy, f1, matthews]")
 
@@ -515,7 +515,7 @@ if __name__ == '__main__':
     gridsearch = False
     if args.optimizer == 0:
         print("Iterative")
-        print("metric = " + metric)
+        print("metric = " + evaluation_metric)
         print("number of lambdas = " + str(number_lambdas))
         print("epochs = " + str(epochs))
         print("shifts = " + str(shift))
@@ -530,20 +530,20 @@ if __name__ == '__main__':
 
     elif args.optimizer == 1:
         print("Gridsearch")
-        print("metric = " + metric)
+        print("metric = " + evaluation_metric)
         print("number of lambdas = " + str(number_lambdas))
         opt = Gridsearch2D(nr_points=number_lambdas)
         gridsearch = True
     elif args.optimizer == 2:
         print("MLE optimizer")
-        print("metric = " + metric)
+        print("metric = " + evaluation_metric)
         opt = MLEDiagonalOptimizer()
     else:
         exit("optimizer does not exist")
 
     if args.dataset_arg == "sonar":
-        run_sonar(opt, gridsearch, metric)
+        run_sonar(opt, gridsearch, evaluation_metric)
     elif args.dataset_arg == "breast":
-        run_breast(opt, gridsearch, metric)
+        run_breast(opt, gridsearch, evaluation_metric)
     else:
         exit("dataset does not exist")
