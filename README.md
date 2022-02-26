@@ -39,7 +39,8 @@ of all classifiers for varying lambda 2.
 ### [Optimization](boxcox/optimization)
 This experiment was used to test the iterative optimization for two real world datasets. Additionally, 2-dimensional
 subsets were created to compare the method against a 2D grid search. The scripts need as input the name of the dataset 
-(sonar/breast), the optimization procedure (0=iterative, 1=grid search, 2=mle) and a metric to measure the performance. 
+(sonar/breast), the optimization procedure (0=iterative, 1=grid search, 2=mle, 3=diagonal, 4=spherical) and a metric to measure the performance. 
+Details about the optimization procedures can be found [here](boxcox/optimization/README.md).
 Optionally, hyperparameters can be added. The output first shows the version of the used libraries for reproducibility 
 (Python, Scikit, Numpy, Scipy). After that the results for the given real world dataset are displayed, followed by the 
 2-dimensional subset results. For each of these (sub-) dataset, the dataset itself is printed, 
@@ -82,6 +83,18 @@ To run all experiments first create folders "logs_acc". "logs_f1" and "logs_matt
     Breast MLE:
     python3 -m experiments.case_studies breast 2 --metric accuracy > logs_acc/breast_mle.txt
 
+    Sonar Diagonal:
+    python3 -m experiments.case_studies sonar 3 --metric accuracy > logs_acc/sonar_diag.txt
+
+    Breast Diagonal:
+    python3 -m experiments.case_studies breast 3 --metric accuracy > logs_acc/breast_diag.txt
+
+    Sonar Spherical:
+    python3 -m experiments.case_studies sonar 4 --metric accuracy > logs_acc/sonar_spher.txt
+
+    Breast Spherical:
+    python3 -m experiments.case_studies breast 4 --metric accuracy > logs_acc/breast_spher.txt
+
 
     EVALUATE F1 SCORE
 
@@ -112,6 +125,18 @@ To run all experiments first create folders "logs_acc". "logs_f1" and "logs_matt
 
     Breast MLE:
     python3 -m experiments.case_studies breast 2 --metric f1 > logs_f1/breast_mle.txt
+
+    Sonar Diagonal:
+    python3 -m experiments.case_studies sonar 3 --metric f1 > logs_f1/sonar_diag.txt
+
+    Breast Diagonal:
+    python3 -m experiments.case_studies breast 3 --metric f1 > logs_f1/breast_diag.txt
+
+    Sonar Spherical:
+    python3 -m experiments.case_studies sonar 4 --metric f1 > logs_f1/sonar_spher.txt
+
+    Breast Spherical:
+    python3 -m experiments.case_studies breast 4 --metric f1 > logs_f1/breast_spher.txt
 
 
     EVALUATE MATTHEWS CROSS CORRELATION
@@ -144,6 +169,17 @@ To run all experiments first create folders "logs_acc". "logs_f1" and "logs_matt
     Breast MLE:
     python3 -m experiments.case_studies breast 2 --metric matthews > logs_matthews/breast_mle.txt
 
+    Sonar Diagonal:
+    python3 -m experiments.case_studies sonar 3 --metric matthews > logs_matthews/sonar_diag.txt
+
+    Breast Diagonal:
+    python3 -m experiments.case_studies breast 3 --metric matthews > logs_matthews/breast_diag.txt
+
+    Sonar Spherical:
+    python3 -m experiments.case_studies sonar 4 --metric matthews > logs_matthews/sonar_spher.txt
+
+    Breast Spherical:
+    python3 -m experiments.case_studies breast 4 --metric matthews > logs_matthews/breast_spher.txt
 
 
 

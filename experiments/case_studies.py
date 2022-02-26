@@ -24,6 +24,8 @@ from boxcox.optimization import Gridsearch2D
 from boxcox.optimization import ClassifierOptimization
 from boxcox.optimization import IterativeOptimizer
 from boxcox.optimization import MLEDiagonalOptimizer
+from boxcox.optimization import DiagonalOptimization
+from boxcox.optimization import SphericalOptimization
 
 
 def show_data(features, labels, store_path=None):
@@ -458,7 +460,7 @@ if __name__ == '__main__':
     parser.add_argument('dataset_arg', type=str, help='specify dataset')
     parser.add_argument('optimizer', type=int,
                         help='specify which optimizer to use {0:iterative, 1:2DGridsearch (only for 2D datasets), '
-                             '2:mle}')
+                             '2:mle, 3:diagonal, 4:spherical}')
     parser.add_argument('--metric', type=str, help='specify what metric to use to evaluate cross validation '
                                                    '[accuracy, f1, matthews]')
 
@@ -538,6 +540,14 @@ if __name__ == '__main__':
         print("MLE optimizer")
         print("metric = " + evaluation_metric)
         opt = MLEDiagonalOptimizer()
+    elif args.optimizer == 3:
+        print("Diagonal optimizer")
+        print("metric = " + evaluation_metric)
+        opt = DiagonalOptimization(nr_lambdas=number_lambdas)
+    elif args.optimizer == 4:
+        print("Spherical optimizer")
+        print("metric = " + evaluation_metric)
+        opt = SphericalOptimization(nr_lambdas=number_lambdas)
     else:
         exit("optimizer does not exist")
 
