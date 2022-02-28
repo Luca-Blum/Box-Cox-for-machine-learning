@@ -134,8 +134,6 @@ if __name__ == '__main__':
 
     evaluate_repeated("2D_class")
 
-    exit()
-
     X1, y1 = make_classification(n_samples=1000, n_features=2, n_informative=2, n_redundant=0, n_repeated=0,
                                  n_classes=2, random_state=1)
 
