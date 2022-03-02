@@ -51,7 +51,7 @@ Additionally, the mean of the base classifier and the corresponding standard dev
 At the end of a (sub-) dataset everything is summarized in a row for the performance of all classifiers 
 for the specified optimization, the accuracy of the base classifiers and the corresponding improvements.
 
-To run all experiments first create folders "logs_acc". "logs_f1" and "logs_matthews" and then run:
+To run all experiments first create folders "logs_acc" and "logs_f1", and then run:
     
     EVALUATE ACCURACY
 
@@ -139,7 +139,9 @@ To run all experiments first create folders "logs_acc". "logs_f1" and "logs_matt
     python3 -m experiments.case_studies breast 4 --metric f1 > logs_f1/breast_spher.txt
 
 
-    EVALUATE MATTHEWS CROSS CORRELATION
+Additionally, matthews cross-correlation measurements can be created by first creating a folder "logs_matthews" and then run:
+
+EVALUATE MATTHEWS CROSS CORRELATION
 
     Sonar iterative:
     python3 -m experiments.case_studies sonar 0 --metric matthews --number_lambdas 11 --epochs 4 --shift 4 --shuffle 4 --finer 4 > logs_matthews/sonar_iter_4_rounds.txt
@@ -180,8 +182,5 @@ To run all experiments first create folders "logs_acc". "logs_f1" and "logs_matt
 
     Breast Spherical:
     python3 -m experiments.case_studies breast 4 --metric matthews > logs_matthews/breast_spher.txt
-
-
-
 
 
