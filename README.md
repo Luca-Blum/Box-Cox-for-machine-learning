@@ -1,7 +1,7 @@
 # Box-Cox
 
 This repository contains the code that was used for the paper 
-[Impact of Box Cox Transformation on Machine Learning Algorithms](Impact_of_Box_Cox_Transformation_on_Machine_Learning_Algorithms_iterative.pdf). A study conducted at ETH Zürich and conceived by:
+[Impact of Box Cox Transformation on Machine Learning Algorithms](https://doi.org/10.3389/frai.2022.877569). A study conducted at ETH Zürich and conceived by:
 
 - Luca Blum <luca.bluem95@gmail.com>
 - Dr. Mohamed Elgendi <moe.elgendi@gmail.com>
